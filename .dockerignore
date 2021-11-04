@@ -1,0 +1,7 @@
+/.config/
+/.git/
+/.idea/
+/.dockerignore
+/.gitignore
+/Dockerfile
+/README.md
