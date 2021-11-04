@@ -1,6 +1,7 @@
 /.config/
 /.git/
 /.idea/
+/1.01/
 /.dockerignore
 /.gitignore
 /Dockerfile
