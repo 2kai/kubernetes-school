@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hashgenerator-deployment
+  name: hash-generator-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hashgenerator
+      app: hash-generator
   template:
     metadata:
       labels:
-        app: hashgenerator
+        app: hash-generator
     spec:
       containers:
         - name: hash-generator
