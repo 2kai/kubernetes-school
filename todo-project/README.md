@@ -2,7 +2,7 @@
 
 ###### GitHub Actions
 
-Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (/1.02/**)
+Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (/todo-project/**)
 
 ###### Manual
 
@@ -26,3 +26,11 @@ kubectl create deployment todo-project-deployment --image=2kai/k8s-school-todo-p
 kubectl delete deployment todo-project-deployment
 kubectl apply -f todo-project/manifests/deployment.yaml
 ```
+
+###### Exercise 1.05
+
+```shell
+kubectl port-forward deployment/todo-project-deployment  --address 0.0.0.0 3005:3000
+```
+
+Now you can open http://localhost:8001/ at the browser and get "Kiitti".

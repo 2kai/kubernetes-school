@@ -2,7 +2,7 @@
 
 ```shell
 docker build -t kubernetes-school .
-docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
+docker run --rm -it -p 8001:3005 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
 ```
 
 Then inside Docker container
