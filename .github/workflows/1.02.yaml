@@ -2,7 +2,7 @@ name: TODO project application
 on:
   push:
     branches:
-      - "1.02"
+      - master
     paths:
       - 1.02/**
 jobs:
