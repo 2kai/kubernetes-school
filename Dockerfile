@@ -2,6 +2,8 @@ FROM debian:11.1-slim
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
+WORKDIR /opt
+
 RUN apt-get update \
     && apt-get --yes upgrade \
     && apt-get install --yes --no-install-recommends apt-utils lsb-release software-properties-common apt-transport-https ca-certificates curl gnupg2 iproute2

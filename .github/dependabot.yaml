@@ -11,7 +11,7 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: docker
-    directory: /1.01
+    directory: /hash-generator
     schedule:
       interval: daily
     assignees:
@@ -19,7 +19,7 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: docker
-    directory: /1.02
+    directory: /todo-project
     schedule:
       interval: daily
     assignees:
@@ -27,7 +27,7 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: npm
-    directory: /1.02
+    directory: /todo-project
     schedule:
       interval: daily
     assignees:

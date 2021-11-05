@@ -1,7 +1,8 @@
 /.config/
 /.git/
 /.idea/
-/1.01/
+/hash-generator/
+/todo-project/
 /.dockerignore
 /.gitignore
 /Dockerfile
