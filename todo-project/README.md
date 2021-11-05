@@ -34,3 +34,11 @@ kubectl port-forward deployment/todo-project-deployment  --address 0.0.0.0 3005:
 ```
 
 Now you can open http://localhost:8001/ at the browser and get "Kiitti".
+
+###### Exercise 1.06
+
+```shell
+kubectl apply -f todo-project/manifests/service.yaml
+```
+
+Now you can open http://localhost:8082/ at the browser and get "Kiitti".
