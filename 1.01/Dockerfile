@@ -6,4 +6,4 @@ WORKDIR /opt
 
 COPY . .
 
-CMD ["php", "-f", "index.php"]
+CMD ["php", "-f", "src/index.php"]

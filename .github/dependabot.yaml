@@ -18,3 +18,19 @@ updates:
       - 2kai
     reviewers:
       - 2kai
+  - package-ecosystem: docker
+    directory: /1.02
+    schedule:
+      interval: daily
+    assignees:
+      - 2kai
+    reviewers:
+      - 2kai
+  - package-ecosystem: npm
+    directory: /1.02
+    schedule:
+      interval: daily
+    assignees:
+      - 2kai
+    reviewers:
+      - 2kai
