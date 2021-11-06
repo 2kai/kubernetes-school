@@ -38,7 +38,15 @@ Now you can open http://localhost:8001/ at the browser and get "Kiitti".
 ###### Exercise 1.06
 
 ```shell
-kubectl apply -f todo-project/manifests/service.yaml
+kubectl apply -f todo-project/manifests/nodeport-nodeport-service.yaml
 ```
 
 Now you can open http://localhost:8082/ at the browser and get "Kiitti".
+
+###### Exercise 1.08
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Now you can open both http://localhost:8081/ (ClusterIP service) and http://localhost:8082/ (NodePort service) at the browser and get "Kiitti".
