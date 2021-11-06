@@ -1,0 +1,47 @@
+# Traefik v1
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: ping-pong-ing
+#  annotations:
+#    kubernetes.io/ingress.class: traefik
+#    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+#    traefik.ingress.kubernetes.io/rewrite-target: /
+#spec:
+#  rules:
+#    - http:
+#        paths:
+#          - path: /pingpong
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: ping-pong-svc
+#                port:
+#                  number: 2345
+
+
+# Traefik v2
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ping-pong-ingress-route
+spec:
+#  entryPoints:
+#    - web
+  routes:
+    - match: PathPrefix(`/pingpong`)
+      kind: Rule
+      services:
+        - name: ping-pong-svc
+          port: 2345
+      middlewares:
+        - name: ping-pong-middleware
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ping-pong-middleware
+spec:
+  stripPrefix:
+    prefixes:
+      - /pingpong

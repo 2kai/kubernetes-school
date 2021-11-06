@@ -4,6 +4,7 @@
 /.idea/
 /hash-generator/
 /log-output/
+/ping-pong/
 /todo-project/
 /.dockerignore
 /.gitignore

@@ -27,6 +27,14 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: docker
+    directory: /ping-pong
+    schedule:
+      interval: daily
+    assignees:
+      - 2kai
+    reviewers:
+      - 2kai
+  - package-ecosystem: docker
     directory: /todo-project
     schedule:
       interval: daily
