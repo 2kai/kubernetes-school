@@ -1,7 +1,9 @@
 /.config/
 /.git/
+/.github/
 /.idea/
 /hash-generator/
+/log-output/
 /todo-project/
 /.dockerignore
 /.gitignore

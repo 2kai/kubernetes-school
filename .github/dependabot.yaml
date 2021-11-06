@@ -19,6 +19,14 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: docker
+    directory: /log-output
+    schedule:
+      interval: daily
+    assignees:
+      - 2kai
+    reviewers:
+      - 2kai
+  - package-ecosystem: docker
     directory: /todo-project
     schedule:
       interval: daily
