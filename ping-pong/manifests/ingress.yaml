@@ -26,8 +26,6 @@ kind: IngressRoute
 metadata:
   name: ping-pong-ingress-route
 spec:
-#  entryPoints:
-#    - web
   routes:
     - match: PathPrefix(`/pingpong`)
       kind: Rule

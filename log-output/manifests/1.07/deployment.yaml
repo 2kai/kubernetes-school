@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output-1-07-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-output-1-07
+  template:
+    metadata:
+      labels:
+        app: log-output-1-07
+    spec:
+      containers:
+        - name: log-output-1-07
+          image: 2kai/k8s-school-log-output-1-07:latest

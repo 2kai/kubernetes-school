@@ -1,9 +1,21 @@
-FROM golang:1.17.3-alpine3.14
+FROM golang:1.17.3-alpine3.14 as base
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
-WORKDIR /opt
+WORKDIR /opt/src
 
-COPY . .
+COPY ./src .
 
-CMD ["go", "run", "src/server.go"]
+# Exercise 1.07
+FROM base as e107
+
+CMD ["go", "run", "1.07.go"]
+
+# Exercise 1.10
+FROM base as writer
+
+CMD ["go", "run", "writer.go"]
+
+FROM base as reader
+
+CMD ["go", "run", "reader.go"]
