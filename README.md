@@ -17,6 +17,6 @@ kubectl cluster-info
 ##### Part 1
 
 1.01, 1.03 - hash-generator  
-1.02, 1.04, 1.05, 1.06, 1.08 - todo-project  
+1.02, 1.04, 1.05, 1.06, 1.08, 1.12 - todo-project  
 1.07, 1.10, 1.11 - log-output  
 1.09 - ping-pong  

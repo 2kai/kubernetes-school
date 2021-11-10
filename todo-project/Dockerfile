@@ -10,4 +10,6 @@ RUN npm install
 
 COPY . .
 
+RUN ./node_modules/typescript/bin/tsc src/server.ts
+
 CMD ["node", "src/server.js"]
