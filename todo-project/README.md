@@ -49,4 +49,13 @@ Now you can open http://localhost:8082/ at the browser and get "Kiitti".
 kubectl apply -f todo-project/manifests/
 ```
 
-Now you can open both http://localhost:8081/ (ClusterIP service) and http://localhost:8082/ (NodePort service) at the browser and get "Kiitti".
+Now you can open both http://localhost:8081/ (ClusterIP service) and http://localhost:8082/ (NodePort service) at the
+browser and get "Kiitti".
+
+###### Exercise 1.08
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Now you can open http://localhost:8081/daily at the browser and get daily picture.
