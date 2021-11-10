@@ -9,8 +9,10 @@ import (
 
 func kiittiHandler(random_hex []byte) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
-        timestamp, _ := os.ReadFile("/opt/timestamps/timestamp.txt")
-        fmt.Fprintf(w, "Kiitti: timestamp from the file is %s, hash is %x\n", timestamp, random_hex)
+        simple_timestamp, _ := os.ReadFile("/opt/timestamps/timestamp.txt")
+        persistent_pings, _ := os.ReadFile("/opt/pings/pings.txt")
+        fmt.Fprintf(w, "Kiitti: timestamp from the file from Simple Volume is %s, hash is %x\n", simple_timestamp, random_hex)
+        fmt.Fprintf(w, "Ping / Pongs: %s\n", persistent_pings)
     }
 }
 

@@ -2,6 +2,7 @@
 /.git/
 /.github/
 /.idea/
+/common/
 /hash-generator/
 /log-output/
 /ping-pong/

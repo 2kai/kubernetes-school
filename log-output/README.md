@@ -27,3 +27,24 @@ kubectl apply -f log-output/manifests/1.07
 ```
 
 Now you can open http://localhost:8081/1.07 at the browser and get "Kiitti", current timestamp and random string.
+
+###### Exercise 1.10
+
+```shell
+kubectl apply -f log-output/manifests/log-output
+```
+
+Now you can open http://localhost:8081 at the browser and get "Kiitti", current timestamp (from the file) and random
+string.
+
+###### Exercise 1.11
+
+```shell
+kubectl apply -f common/manifests
+kubectl apply -f log-output/manifests/log-output
+kubectl apply -f ping-pong/manifests
+```
+
+Now you can open http://localhost:8081 at the browser and get "Kiitti", current timestamp (from the file) and random
+string. On the next line you can see number of ping-pongs from "Ping-pong" application. Number is saved in persistent
+storage.
