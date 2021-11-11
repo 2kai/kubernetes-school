@@ -12,6 +12,13 @@ spec:
       labels:
         app: todo-project
     spec:
+      volumes:
+        - name: daily-image-volume
+          persistentVolumeClaim:
+            claimName: common-claim
       containers:
         - name: todo-project
           image: 2kai/k8s-school-todo-project:latest
+          volumeMounts:
+            - name: daily-image-volume
+              mountPath: /opt/src/daily/

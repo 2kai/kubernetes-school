@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const dailyImageFilename = '/opt/src/daily.jpg';
+const dailyImageFilename = '/opt/src/daily/daily.jpg';
 
 app.get('/', function (req, res) {
     res.json('Kiitti');
