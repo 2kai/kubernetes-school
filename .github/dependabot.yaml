@@ -58,3 +58,6 @@ updates:
       - 2kai
     reviewers:
       - 2kai
+    ignore:
+      - dependency-name: "node-fetch"
+        update-types: [ "version-update:semver-major" ]
