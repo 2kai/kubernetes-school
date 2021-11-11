@@ -1,4 +1,4 @@
-FROM node:17.0.1-alpine3.14
+FROM node:17.1.0-alpine3.14
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
