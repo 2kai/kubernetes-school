@@ -26,7 +26,8 @@ docker run -p 81:8090 2kai/k8s-school-log-output-reader
 kubectl apply -f log-output/manifests/1.07
 ```
 
-Now you can open http://localhost:8081/1.07 at the browser and get "Kiitti", current timestamp and random string.
+Now you can open http://localhost:8081/log-output/1.07 at the browser and get "Kiitti", current timestamp and random
+string.
 
 ###### Exercise 1.10
 
@@ -34,8 +35,8 @@ Now you can open http://localhost:8081/1.07 at the browser and get "Kiitti", cur
 kubectl apply -f log-output/manifests/log-output
 ```
 
-Now you can open http://localhost:8081 at the browser and get "Kiitti", current timestamp (from the file) and random
-string.
+Now you can open http://localhost:8081/log-output at the browser and get "Kiitti", current timestamp (from the file) and
+random string.
 
 ###### Exercise 1.11
 
@@ -45,6 +46,6 @@ kubectl apply -f log-output/manifests/log-output
 kubectl apply -f ping-pong/manifests
 ```
 
-Now you can open http://localhost:8081 at the browser and get "Kiitti", current timestamp (from the file) and random
-string. On the next line you can see number of ping-pongs from "Ping-pong" application. Number is saved in persistent
-storage.
+Now you can open http://localhost:8081/log-output at the browser and get "Kiitti", current timestamp (from the file) and
+random string. On the next line you can see number of ping-pongs from "Ping-pong" application. Number is saved in
+persistent storage.

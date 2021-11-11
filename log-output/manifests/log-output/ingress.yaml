@@ -6,8 +6,8 @@ spec:
   rules:
     - http:
         paths:
-          - path: /
-            pathType: Exact
+          - path: /log-output
+            pathType: Prefix
             backend:
               service:
                 name: log-output-reader-svc
