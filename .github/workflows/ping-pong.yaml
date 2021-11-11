@@ -1,8 +1,8 @@
 name: Ping-pong application
 on:
   push:
-#    branches:
-#      - master
+    branches:
+      - master
     paths:
       - ping-pong/**
 jobs:

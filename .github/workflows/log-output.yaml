@@ -1,8 +1,8 @@
 name: Log output application
 on:
   push:
-#    branches:
-#      - master
+    branches:
+      - master
     paths:
       - log-output/**
 jobs:
