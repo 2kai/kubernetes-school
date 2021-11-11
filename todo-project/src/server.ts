@@ -4,11 +4,12 @@ import fetch from 'node-fetch';
 const express = require('express');
 const app = express();
 const port = 3000;
+const path = require('path');
 
 const dailyImageFilename = '/opt/src/daily/daily.jpg';
 
 app.get('/', function (req, res) {
-    res.json('Kiitti');
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 app.get('/daily', async function (req, res) {
@@ -38,6 +39,8 @@ app.get('/daily', async function (req, res) {
 
     res.sendFile(dailyImageFilename);
 });
+
+app.use(express.static(__dirname));
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
