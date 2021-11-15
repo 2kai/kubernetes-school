@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: todo-project-ing
+  name: todo-project-frontend-ing
 spec:
   rules:
     - http:
@@ -10,6 +10,29 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: todo-project-svc
+                name: todo-project-frontend-svc
                 port:
                   number: 2345
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: todo-project-api-ingress-route
+spec:
+  routes:
+    - match: PathPrefix(`/api`)
+      kind: Rule
+      services:
+        - name: todo-project-api-svc
+          port: 2345
+      middlewares:
+        - name: todo-project-api-middleware
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: todo-project-api-middleware
+spec:
+  stripPrefix:
+    prefixes:
+      - /api

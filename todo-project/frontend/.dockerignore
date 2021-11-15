@@ -1,0 +1,7 @@
+/.idea/
+/manifests/
+/node_modules/
+/.dockerignore
+/.gitignore
+/Dockerfile
+/README.md

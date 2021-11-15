@@ -10,6 +10,6 @@ RUN npm install
 
 COPY . .
 
-RUN ./node_modules/typescript/bin/tsc src/server.ts
+RUN ./node_modules/typescript/bin/tsc src/api.ts
 
-CMD ["node", "src/server.js"]
+CMD ["node", "src/api.js"]

@@ -2,14 +2,24 @@ import * as fs from 'fs';
 import fetch from 'node-fetch';
 
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const port = 3000;
-const path = require('path');
 
 const dailyImageFilename = '/opt/src/daily/daily.jpg';
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '/index.html'));
+app.use(express.json());
+app.use(cors());
+
+let todos = [];
+
+app.get('/todos', function (req, res) {
+    res.json(todos);
+});
+
+app.post('/todos', function (req, res) {
+    todos.push(req.body.todo);
+    res.json(todos);
 });
 
 app.get('/daily', async function (req, res) {
@@ -40,7 +50,6 @@ app.get('/daily', async function (req, res) {
     res.sendFile(dailyImageFilename);
 });
 
-app.use(express.static(__dirname));
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);

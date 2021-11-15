@@ -20,4 +20,9 @@ k9s
 1.01, 1.03 - hash-generator  
 1.02, 1.04, 1.05, 1.06, 1.08, 1.12, 1.13 - todo-project  
 1.07, 1.10, 1.11 - log-output  
-1.09 - ping-pong  
+1.09 - ping-pong
+
+##### Part 2
+
+2.01 - log-output  
+2.02 - todo-project  
