@@ -18,7 +18,7 @@ spec:
             claimName: common-claim
       containers:
         - name: todo-project
-          image: 2kai/k8s-school-todo-project:latest
+          image: 2kai/k8s-school-todo-project:1.13
           volumeMounts:
             - name: daily-image-volume
               mountPath: /opt/src/daily/

@@ -18,7 +18,7 @@ spec:
             claimName: common-claim
       containers:
         - name: ping-pong
-          image: 2kai/k8s-school-ping-pong:latest
+          image: 2kai/k8s-school-ping-pong:1.13
           volumeMounts:
             - name: shared-pings
               mountPath: /opt/pings

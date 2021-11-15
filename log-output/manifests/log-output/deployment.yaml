@@ -20,12 +20,12 @@ spec:
             claimName: common-claim
       containers:
         - name: log-output-writer
-          image: 2kai/k8s-school-log-output-writer:latest
+          image: 2kai/k8s-school-log-output-writer:1.13
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps
         - name: log-output-reader
-          image: 2kai/k8s-school-log-output-reader:latest
+          image: 2kai/k8s-school-log-output-reader:1.13
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps

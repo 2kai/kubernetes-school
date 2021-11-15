@@ -1,8 +1,8 @@
 name: TODO project application
 on:
   push:
-    branches:
-      - master
+    tags:
+      - v*
     paths:
       - todo-project/**
 jobs:
@@ -10,6 +10,9 @@ jobs:
     name: Build and push application
     runs-on: ubuntu-latest
     steps:
+      - name: Get the tag
+        id: tag
+        run: echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\/v/}
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -30,7 +33,9 @@ jobs:
         with:
           context: todo-project
           push: true
-          tags: 2kai/k8s-school-todo-project
+          tags: |
+            2kai/k8s-school-todo-project:${{ steps.tag.outputs.TAG }}
+            2kai/k8s-school-todo-project:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       - name: Move cache

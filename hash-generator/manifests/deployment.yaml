@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: hash-generator
-          image: 2kai/k8s-school-hash-generator:latest
+          image: 2kai/k8s-school-hash-generator:1.13
