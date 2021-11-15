@@ -15,19 +15,14 @@ spec:
       volumes:
         - name: shared-timestamps
           emptyDir: { }
-        - name: shared-pings
-          persistentVolumeClaim:
-            claimName: common-claim
       containers:
         - name: log-output-writer
-          image: 2kai/k8s-school-log-output-writer:1.13
+          image: 2kai/k8s-school-log-output-writer:2.01
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps
         - name: log-output-reader
-          image: 2kai/k8s-school-log-output-reader:1.13
+          image: 2kai/k8s-school-log-output-reader:2.01
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps
-            - name: shared-pings
-              mountPath: /opt/pings

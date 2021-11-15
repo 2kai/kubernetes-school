@@ -1,8 +1,8 @@
 name: Log output application
 on:
   push:
-    tags:
-      - v*
+    branches-ignore:
+      - master
     paths:
       - log-output/**
 jobs:
@@ -10,9 +10,9 @@ jobs:
     name: Build and push application
     runs-on: ubuntu-latest
     steps:
-      - name: Get the tag
-        id: tag
-        run: echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\/v/}
+      - name: Set output
+        id: vars
+        run: echo "::set-output name=branch::$(echo -n "${GITHUB_REF#refs/*/}")"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -35,7 +35,7 @@ jobs:
           target: e107
           push: true
           tags: |
-            2kai/k8s-school-log-output-1-07:${{ steps.tag.outputs.TAG }}
+            2kai/k8s-school-log-output-1-07:${{ steps.vars.outputs.branch }}
             2kai/k8s-school-log-output-1-07:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
@@ -46,7 +46,7 @@ jobs:
           target: writer
           push: true
           tags: |
-            2kai/k8s-school-log-output-writer:${{ steps.tag.outputs.TAG }}
+            2kai/k8s-school-log-output-writer:${{ steps.vars.outputs.branch }}
             2kai/k8s-school-log-output-writer:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
@@ -57,7 +57,7 @@ jobs:
           target: reader
           push: true
           tags: |
-            2kai/k8s-school-log-output-reader:${{ steps.tag.outputs.TAG }}
+            2kai/k8s-school-log-output-reader:${{ steps.vars.outputs.branch }}
             2kai/k8s-school-log-output-reader:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max

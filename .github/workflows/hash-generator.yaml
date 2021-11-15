@@ -1,8 +1,8 @@
 name: Hash generator application
 on:
   push:
-    tags:
-      - v*
+    branches-ignore:
+      - master
     paths:
       - hash-generator/**
 jobs:
@@ -10,9 +10,9 @@ jobs:
     name: Build and push application
     runs-on: ubuntu-latest
     steps:
-      - name: Get the tag
-        id: tag
-        run: echo ::set-output name=TAG::${GITHUB_REF/refs\/tags\/v/}
+      - name: Set output
+        id: vars
+        run: echo "::set-output name=branch::$(echo -n "${GITHUB_REF#refs/*/}")"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -34,7 +34,7 @@ jobs:
           context: hash-generator
           push: true
           tags: |
-            2kai/k8s-school-hash-generator:${{ steps.tag.outputs.TAG }}
+            2kai/k8s-school-hash-generator:${{ steps.vars.outputs.branch }}
             2kai/k8s-school-hash-generator:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
