@@ -6,7 +6,7 @@ WORKDIR /opt
 
 RUN apt-get update \
     && apt-get --yes upgrade \
-    && apt-get install --yes --no-install-recommends apt-utils lsb-release software-properties-common apt-transport-https ca-certificates curl gnupg2 iproute2
+    && apt-get install --yes --no-install-recommends apt-utils lsb-release software-properties-common apt-transport-https ca-certificates curl gnupg2 iproute2 git
 
 # Docker
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
@@ -29,3 +29,8 @@ RUN curl --location --output k9s_Linux_x86_64.tar.gz `curl -s https://api.github
     && tar xzf k9s_Linux_x86_64.tar.gz -C /tmp/k9s \
     && rm k9s_Linux_x86_64.tar.gz \
     && mv /tmp/k9s/k9s /usr/local/bin
+
+# kubectx
+RUN git clone https://github.com/ahmetb/kubectx /usr/local/src/kubectx \
+    && ln -s /usr/local/src/kubectx/kubectx /usr/local/bin/kubectx \
+    && ln -s /usr/local/src/kubectx/kubens /usr/local/bin/kubens \

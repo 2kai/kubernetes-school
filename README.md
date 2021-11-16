@@ -24,5 +24,5 @@ k9s
 
 ##### Part 2
 
-2.01 - log-output  
+2.01, 2.03 - log-output  
 2.02 - todo-project  

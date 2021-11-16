@@ -64,3 +64,12 @@ value. http://localhost:8081/pingpong just return current values of pings. And y
 open http://localhost:8081/log-output at the browser and get "Kiitti", current timestamp (from the file) and random
 string. On the next line you can see number of ping-pongs from "Ping-pong" application. Number is got by HTTP request
 from "Ping-pong" application.
+
+###### Exercise 2.03
+
+```shell
+kubectl apply -f common/manifests
+kubectl apply -f log-output/manifests/log-output
+```
+
+Now applications' resources are located in separate namespace.

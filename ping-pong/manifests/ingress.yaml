@@ -2,6 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: ping-pong-ingress-route
+  namespace: applications
 spec:
   routes:
     - match: PathPrefix(`/pingpong`)
@@ -16,6 +17,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
   name: ping-pong-middleware
+  namespace: applications
 spec:
   stripPrefix:
     prefixes:
