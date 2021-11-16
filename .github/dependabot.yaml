@@ -51,7 +51,7 @@ updates:
     reviewers:
       - 2kai
   - package-ecosystem: npm
-    directory: /todo-project
+    directory: /todo-project/api
     schedule:
       interval: daily
     assignees:
@@ -61,3 +61,11 @@ updates:
     ignore:
       - dependency-name: "node-fetch"
         update-types: [ "version-update:semver-major" ]
+  - package-ecosystem: npm
+    directory: /todo-project/frontend
+    schedule:
+      interval: daily
+    assignees:
+      - 2kai
+    reviewers:
+      - 2kai

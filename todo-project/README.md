@@ -77,3 +77,12 @@ kubectl apply -f todo-project/manifests/
 
 Now you can open http://localhost:8081 at the browser and get simple index page. TODO items list is provided by TODO
 api. Also, you can submit new TODO item.
+
+###### Exercise 2.03
+
+```shell
+kubectl apply -f common/manifests
+kubectl apply -f todo-project/manifests
+```
+
+Now project resources are located in separate namespace.
