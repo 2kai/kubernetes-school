@@ -16,14 +16,20 @@ spec:
       volumes:
         - name: shared-timestamps
           emptyDir: { }
+        - name: log-output-cm
+          configMap:
+            name: log-output-cm
       containers:
         - name: log-output-writer
-          image: 2kai/k8s-school-log-output-writer:2.01
+          image: 2kai/k8s-school-log-output-writer:2.06
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps
         - name: log-output-reader
-          image: 2kai/k8s-school-log-output-reader:2.01
+          image: 2kai/k8s-school-log-output-reader:2.06
           volumeMounts:
             - name: shared-timestamps
               mountPath: /opt/timestamps
+            - name: log-output-cm
+              mountPath: /opt/src/.env
+              subPath: .env

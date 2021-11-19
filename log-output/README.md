@@ -73,3 +73,12 @@ kubectl apply -f log-output/manifests/log-output
 ```
 
 Now applications' resources are located in separate namespace.
+
+###### Exercise 2.06
+
+```shell
+kubectl apply -f log-output/manifests/log-output
+```
+
+Now you can open http://localhost:8081/log-output at the browser and see "Hello" on the first line. This message comes
+from .env file that is loaded from ConfigMap.
