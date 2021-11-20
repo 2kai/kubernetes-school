@@ -1,6 +1,7 @@
 /.idea/
 /manifests/
 /node_modules/
+/src/__pycache__/
 /.dockerignore
 /Dockerfile
 /README.md

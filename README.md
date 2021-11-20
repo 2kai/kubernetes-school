@@ -26,3 +26,4 @@ k9s
 
 2.01, 2.03, 2.06 - log-output  
 2.02, 2.04 - todo-project  
+2.07 - ping-pong

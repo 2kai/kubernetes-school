@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ping-pong-cm
+  namespace: applications
+data:
+  POSTGRES_HOST: ping-pong-postgres-svc

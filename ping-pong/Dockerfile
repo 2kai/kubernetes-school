@@ -6,9 +6,10 @@ WORKDIR /opt
 
 COPY src/requirements.txt ./
 
-RUN apk add --no-cache --virtual .build-deps cargo make \
+RUN apk add --no-cache --virtual .build-deps cargo make g++ postgresql-dev \
     && pip install --no-cache-dir --upgrade -r requirements.txt \
-    && apk --purge del .build-deps
+    && apk --purge del .build-deps \
+    && apk add --no-cache libpq
 
 COPY . .
 

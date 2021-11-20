@@ -15,4 +15,9 @@ spec:
     spec:
       containers:
         - name: ping-pong
-          image: 2kai/k8s-school-ping-pong:2.01
+          image: 2kai/k8s-school-ping-pong:2.07
+          envFrom:
+            - configMapRef:
+                name: ping-pong-cm
+            - secretRef:
+                name: postgres-secret

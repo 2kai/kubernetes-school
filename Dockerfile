@@ -33,4 +33,9 @@ RUN curl --location --output k9s_Linux_x86_64.tar.gz `curl -s https://api.github
 # kubectx
 RUN git clone https://github.com/ahmetb/kubectx /usr/local/src/kubectx \
     && ln -s /usr/local/src/kubectx/kubectx /usr/local/bin/kubectx \
-    && ln -s /usr/local/src/kubectx/kubens /usr/local/bin/kubens \
+    && ln -s /usr/local/src/kubectx/kubens /usr/local/bin/kubens
+
+# sops
+RUN curl --location --output sops_amd64.deb `curl -s https://api.github.com/repos/mozilla/sops/releases/latest | grep "browser_download_url.*amd64.deb" | cut -d : -f 2,3 | tr -d \"` \
+    && apt-get install --yes --no-install-recommends ./sops_amd64.deb \
+    && rm sops_amd64.deb
