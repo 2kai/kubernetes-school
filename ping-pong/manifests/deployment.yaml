@@ -20,4 +20,4 @@ spec:
             - configMapRef:
                 name: ping-pong-cm
             - secretRef:
-                name: postgres-secret
+                name: ping-pong-postgres-secret

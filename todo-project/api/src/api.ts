@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import fetch from 'node-fetch';
+import Database from './database';
 
 const express = require('express');
 const cors = require('cors')
@@ -8,18 +9,18 @@ const port = 3000;
 
 const dailyImageFilename = '/opt/src/daily/daily.jpg';
 
+const database = new Database();
+
 app.use(express.json());
 app.use(cors());
 
-let todos = [];
-
-app.get('/todos', function (req, res) {
-    res.json(todos);
+app.get('/todos', async function (req, res) {
+    res.json(await database.getTodos());
 });
 
-app.post('/todos', function (req, res) {
-    todos.push(req.body.todo);
-    res.json(todos);
+app.post('/todos', async function (req, res) {
+    await database.addTodo(req.body.todo);
+    res.json(await database.getTodos());
 });
 
 app.get('/daily', async function (req, res) {

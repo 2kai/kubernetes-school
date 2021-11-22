@@ -4,6 +4,24 @@
 
 Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (/todo-project/**)
 
+###### Encryption/decryption
+
+Copy PGP private key into container
+
+```shell
+gpg --export-secret-keys kai@list.ru > private.key
+```
+
+Then inside container run following commands
+
+```shell
+# To encrypt
+sops --encrypt --in-place --encrypted-regex '^(data)$' --pgp 4AC71DA9F8AE00CFF2BEBBAA640615841665E668 todo-project/manifests/postgres-secret.yaml
+# To decrypt
+gpg --import private.key
+GPG_TTY=`tty` sops --decrypt --in-place todo-project/manifests/postgres-secret.yaml
+```
+
 ###### Manual
 
 ```shell
@@ -86,3 +104,13 @@ kubectl apply -f todo-project/manifests
 ```
 
 Now project resources are located in separate namespace.
+
+###### Exercise 2.08
+
+```shell
+kubectl apply -f todo-project/manifests/
+kubectl -n project cp todo-project/api/structure.sql todo-project-postgres-ss-0:/structure.sql
+kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgres < /structure.sql'
+```
+
+Now todos are stored in PostgreSQL database.
