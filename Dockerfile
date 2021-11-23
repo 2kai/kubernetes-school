@@ -39,3 +39,9 @@ RUN git clone https://github.com/ahmetb/kubectx /usr/local/src/kubectx \
 RUN curl --location --output sops_amd64.deb `curl -s https://api.github.com/repos/mozilla/sops/releases/latest | grep "browser_download_url.*amd64.deb" | cut -d : -f 2,3 | tr -d \"` \
     && apt-get install --yes --no-install-recommends ./sops_amd64.deb \
     && rm sops_amd64.deb
+
+# Helm
+RUN curl https://baltocdn.com/helm/signing.asc | apt-key add - \
+    && echo "deb https://baltocdn.com/helm/stable/debian/ all main" | tee /etc/apt/sources.list.d/helm-stable-debian.list \
+    && apt-get update \
+    && apt-get install --yes --no-install-recommends helm

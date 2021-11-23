@@ -51,7 +51,7 @@ kubectl apply -f todo-project/manifests/deployment.yaml
 ###### Exercise 1.05
 
 ```shell
-kubectl port-forward deployment/todo-project-deployment  --address 0.0.0.0 3005:3000
+kubectl port-forward deployment/todo-project-deployment --address 0.0.0.0 3005:3000
 ```
 
 Now you can open http://localhost:8001/ at the browser and get "Kiitti".
@@ -59,7 +59,7 @@ Now you can open http://localhost:8001/ at the browser and get "Kiitti".
 ###### Exercise 1.06
 
 ```shell
-kubectl apply -f todo-project/manifests/nodeport-nodeport-service.yaml
+kubectl apply -f todo-project/manifests/nodeport-service.yaml
 ```
 
 Now you can open http://localhost:8082/ at the browser and get "Kiitti".
@@ -122,3 +122,12 @@ kubectl apply -f todo-project/manifests/
 ```
 
 Now todo with a link to Wikipedia will be added once a day automatically.
+
+###### Exercise 2.10
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Now you can open http://localhost:8081/grafana. Login with admin / prom-operator and play with logs and statistics from
+Prometheus.

@@ -16,6 +16,12 @@ export default class Database {
     }
 
     async addTodo(todo: string): Promise<void> {
+        if (todo.length > 140) {
+            console.error('Maximum length of TODO is 140 characters');
+            return;
+        }
+
+        console.log('Added todo "' + todo + '"');
         await pool.query('INSERT INTO todos (todo) VALUES ($1)', [todo]);
     }
 

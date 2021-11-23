@@ -13,6 +13,18 @@ k3d cluster create --port 8082:30080@agent:0 --port 8081:80@loadbalancer -a 2 --
 docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube
 sed -i 's/https:\/\/0.0.0.0/https:\/\/'"$HOST_IP"'/' /root/.kube/config
 kubectl cluster-info
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add stable https://charts.helm.sh/stable
+kubectl create namespace prometheus
+helm install prometheus-community/kube-prometheus-stack --generate-name --namespace prometheus \
+  --set grafana.ingress.enabled=true \
+  --set grafana.ingress.path=/grafana \
+  --set grafana.'grafana\.ini'.server.root_url=http://0.0.0.0:3000/grafana \
+  --set grafana.'grafana\.ini'.server.serve_from_sub_path=true
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+kubectl create namespace loki-stack
+helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
 k9s
 ```
 
@@ -26,5 +38,5 @@ k9s
 ##### Part 2
 
 2.01, 2.03, 2.06 - log-output  
-2.02, 2.04, 2.08 - todo-project  
+2.02, 2.04, 2.08, 2.09, 2.10 - todo-project  
 2.07 - ping-pong
