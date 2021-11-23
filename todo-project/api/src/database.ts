@@ -17,6 +17,7 @@ export default class Database {
 
     async addTodo(todo: string): Promise<void> {
         if (todo.length > 140) {
+            console.error(todo + ' is toooooo long');
             console.error('Maximum length of TODO is 140 characters');
             return;
         }
