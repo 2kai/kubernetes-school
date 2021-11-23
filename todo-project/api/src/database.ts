@@ -23,6 +23,6 @@ export default class Database {
         const response = await fetch('https://en.wikipedia.org/wiki/Special:Random', {redirect: 'manual'});
         const pageUrl = response.headers.get('location');
 
-        await this.addTodo('Please visit <a href="' + pageUrl + '">' + pageUrl + '</a> on ' + (new Date()).toDateString());
+        await this.addTodo('Please visit <a target="_blank" href="' + pageUrl + '">' + decodeURIComponent(pageUrl) + '</a> on ' + (new Date()).toDateString());
     }
 }
