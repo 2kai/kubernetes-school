@@ -11,7 +11,7 @@
   </q-form>
   <ul>
     <li v-for="(todoItem, index) in todoList" :key="index">
-      {{ todoItem }}
+      <span v-html="todoItem"></span>
     </li>
   </ul>
 </template>

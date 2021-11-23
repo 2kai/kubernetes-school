@@ -114,3 +114,11 @@ kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgre
 ```
 
 Now todos are stored in PostgreSQL database.
+
+###### Exercise 2.09
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Now todo with a link to Wikipedia will be added once a day automatically.

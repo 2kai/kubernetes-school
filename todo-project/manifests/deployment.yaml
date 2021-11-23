@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-project
-          image: 2kai/k8s-school-todo-project-frontend:2.02
+          image: 2kai/k8s-school-todo-project-frontend:2.09
 ---
 apiVersion: apps/v1
 kind: Deployment

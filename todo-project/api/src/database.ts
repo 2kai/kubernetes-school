@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 const Pool = require('pg').Pool;
 const pool = new Pool({
     user: 'postgres',
@@ -15,5 +17,12 @@ export default class Database {
 
     async addTodo(todo: string): Promise<void> {
         await pool.query('INSERT INTO todos (todo) VALUES ($1)', [todo]);
+    }
+
+    async addDailyTodo() {
+        const response = await fetch('https://en.wikipedia.org/wiki/Special:Random', {redirect: 'manual'});
+        const pageUrl = response.headers.get('location');
+
+        await this.addTodo('Please visit <a href="' + pageUrl + '">' + pageUrl + '</a> on ' + (new Date()).toDateString());
     }
 }

@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-project-daily-todo-cronjob
+  namespace: project
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: daily-todo
+              image: 2kai/k8s-school-todo-project-api:2.09
+              envFrom:
+                - configMapRef:
+                    name: todo-project-cm
+                - secretRef:
+                    name: todo-project-postgres-secret
+              command:
+                - /bin/sh
+                - -c
+                - node src/daily-todo.js
+          restartPolicy: OnFailure
