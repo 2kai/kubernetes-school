@@ -2,7 +2,7 @@
 
 ```shell
 docker build -t kubernetes-school .
-docker run --rm -it -p 8001:3005 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
+docker run --rm -it -p 8001:3005 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.config:/root/.config/gcloud -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
 ```
 
 Then inside Docker container
@@ -40,3 +40,16 @@ k9s
 2.01, 2.03, 2.06 - log-output  
 2.02, 2.04, 2.08, 2.09, 2.10 - todo-project  
 2.07 - ping-pong
+
+###### Part 3
+
+```shell
+gcloud auth login
+gcloud config set project devops-with-kubernetes-291121
+gcloud services enable container.googleapis.com
+gcloud container clusters create dwk-cluster --zone=europe-north1-b --release-channel=rapid --cluster-version=1.22
+# Do something
+gcloud container clusters delete dwk-cluster --zone=europe-north1-b
+```
+
+3.01 - ping-pong

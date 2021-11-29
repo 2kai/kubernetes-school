@@ -2,7 +2,8 @@
 
 ###### GitHub Actions
 
-Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (/ping-pong/**)
+Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (
+/ping-pong/**)
 
 ###### Encryption/decryption
 
@@ -50,3 +51,14 @@ kubectl apply -f ping-pong/manifests/
 
 http://localhost:8081/pingpong still shows number of pings and http://localhost:8081/pingpong/increase-and-get increases
 it. But now number is stored in PostgreSQL database.
+
+##### Part 3
+
+###### Exercise 3.01
+
+```shell
+kubectl apply -f common/manifests/namespace.yaml
+kubectl apply -f ping-pong/manifests/
+```
+
+Now the application is deployed to Google Cloud and can be opened at http://<EXTERNAL_IP>.
