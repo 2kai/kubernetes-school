@@ -52,4 +52,4 @@ gcloud container clusters create dwk-cluster --zone=europe-north1-b --release-ch
 gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 ```
 
-3.01 - ping-pong
+3.01, 3.02 - ping-pong

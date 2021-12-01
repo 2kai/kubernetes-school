@@ -13,7 +13,7 @@ import (
 func kiittiHandler(random_hex []byte) http.HandlerFunc {
     return func(w http.ResponseWriter, r *http.Request) {
         simple_timestamp, _ := os.ReadFile("/opt/timestamps/timestamp.txt")
-        response, _ := http.Get("http://ping-pong-svc:2345")
+        response, _ := http.Get("http://ping-pong-svc/pingpong")
 
         defer response.Body.Close()
 

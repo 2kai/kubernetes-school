@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ping-pong
-          image: 2kai/k8s-school-ping-pong:2.07
+          image: 2kai/k8s-school-ping-pong:3.02
           envFrom:
             - configMapRef:
                 name: ping-pong-cm
