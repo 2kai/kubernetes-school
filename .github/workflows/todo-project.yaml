@@ -5,6 +5,12 @@ on:
       - master
     paths:
       - todo-project/**
+env:
+  PROJECT_ID: devops-with-kubernetes-291121
+  GKE_CLUSTER: dwk-cluster
+  GKE_ZONE: europe-north1-b
+  FRONTEND_IMAGE: k8s-school-todo-project-frontend
+  API_IMAGE: k8s-school-todo-project-api
 jobs:
   build-and-push:
     name: Build and push application
@@ -28,14 +34,25 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+      - name: Init Cloud SDK
+        run: |
+          gcloud --quiet auth configure-docker
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
       - name: Build and push frontend
         uses: docker/build-push-action@v2
         with:
           context: todo-project/frontend
           push: true
           tags: |
-            2kai/k8s-school-todo-project-frontend:${{ steps.vars.outputs.branch }}
-            2kai/k8s-school-todo-project-frontend:latest
+            2kai/${{ env.FRONTEND_IMAGE }}:${{ steps.vars.outputs.branch }}
+            2kai/${{ env.FRONTEND_IMAGE }}:latest
+            gcr.io/${{ env.PROJECT_ID }}/${{ env.FRONTEND_IMAGE }}:${{ steps.vars.outputs.branch }}-${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       - name: Build and push api
@@ -44,11 +61,27 @@ jobs:
           context: todo-project/api
           push: true
           tags: |
-            2kai/k8s-school-todo-project-api:${{ steps.vars.outputs.branch }}
-            2kai/k8s-school-todo-project-api:latest
+            2kai/${{ env.API_IMAGE }}:${{ steps.vars.outputs.branch }}
+            2kai/${{ env.API_IMAGE }}:latest
+            gcr.io/${{ env.PROJECT_ID }}/${{ env.API_IMAGE }}:${{ steps.vars.outputs.branch }}-${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      - name: Set up Kustomize
+        uses: imranismail/setup-kustomize@v1
+      - name: Decrypt secrets
+        run: |
+          curl -L https://github.com/mozilla/sops/releases/download/v3.7.1/sops_3.7.1_amd64.deb -o sops_3.7.1_amd64.deb && sudo dpkg -i sops_3.7.1_amd64.deb
+          sops --decrypt --in-place todo-project/manifests/postgres-secret.yaml
+      - name: Deploy
+        run: |
+          cd todo-project
+          kustomize edit set image gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-frontend=gcr.io/"$PROJECT_ID"/"$FRONTEND_IMAGE":"${{ steps.vars.outputs.branch }}"-$GITHUB_SHA
+          kustomize edit set image gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-api=gcr.io/"$PROJECT_ID"/"$API_IMAGE":"${{ steps.vars.outputs.branch }}"-$GITHUB_SHA
+          kustomize build . | kubectl apply -f -
+          kubectl -n project rollout status deployment todo-project-frontend-dep
+          kubectl -n project rollout status deployment todo-project-api-dep
+          kubectl -n project get services -o wide

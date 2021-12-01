@@ -30,7 +30,7 @@ RUN curl --location --output k9s_Linux_x86_64.tar.gz `curl -s https://api.github
     && rm k9s_Linux_x86_64.tar.gz \
     && mv /tmp/k9s/k9s /usr/local/bin
 
-# kubectx
+# kubectx and kubens
 RUN git clone https://github.com/ahmetb/kubectx /usr/local/src/kubectx \
     && ln -s /usr/local/src/kubectx/kubectx /usr/local/bin/kubectx \
     && ln -s /usr/local/src/kubectx/kubens /usr/local/bin/kubens
@@ -51,3 +51,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
     && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - \
     && apt-get update \
     && apt-get install --yes --no-install-recommends google-cloud-sdk
+
+# Kustomize
+RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash \
+    && mv /opt/kustomize /usr/local/bin

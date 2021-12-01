@@ -14,16 +14,20 @@ const database = new Database();
 app.use(express.json());
 app.use(cors());
 
-app.get('/todos', async function (req, res) {
+app.get('/', (req, res) => {
+    res.send();
+});
+
+app.get('/api/todos', async function (req, res) {
     res.json(await database.getTodos());
 });
 
-app.post('/todos', async function (req, res) {
+app.post('/api/todos', async function (req, res) {
     await database.addTodo(req.body.todo);
     res.json(await database.getTodos());
 });
 
-app.get('/daily', async function (req, res) {
+app.get('/api/daily', async function (req, res) {
     let isFreshFileMissing = false;
 
     try {

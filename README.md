@@ -53,3 +53,4 @@ gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 ```
 
 3.01, 3.02 - ping-pong
+3.03 - todo-project  

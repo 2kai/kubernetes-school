@@ -13,29 +13,11 @@ spec:
               service:
                 name: todo-project-frontend-svc
                 port:
-                  number: 2345
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
-metadata:
-  name: todo-project-api-ingress-route
-  namespace: project
-spec:
-  routes:
-    - match: PathPrefix(`/api`)
-      kind: Rule
-      services:
-        - name: todo-project-api-svc
-          port: 2345
-      middlewares:
-        - name: todo-project-api-middleware
----
-apiVersion: traefik.containo.us/v1alpha1
-kind: Middleware
-metadata:
-  name: todo-project-api-middleware
-  namespace: project
-spec:
-  stripPrefix:
-    prefixes:
-      - /api
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: todo-project-api-svc
+                port:
+                  number: 80

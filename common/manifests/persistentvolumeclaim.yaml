@@ -4,7 +4,6 @@ metadata:
   name: common-claim
   namespace: project
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:

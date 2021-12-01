@@ -3,3 +3,4 @@
 /**/__pycache__/
 /.config/
 /private.key
+/private-key.json

@@ -4,11 +4,11 @@ metadata:
   name: todo-project-frontend-svc
   namespace: project
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: todo-project-frontend
   ports:
-    - port: 2345
+    - port: 80
       protocol: TCP
       targetPort: 8080
 ---
@@ -18,10 +18,10 @@ metadata:
   name: todo-project-api-svc
   namespace: project
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: todo-project-api
   ports:
-    - port: 2345
+    - port: 80
       protocol: TCP
       targetPort: 3000

@@ -2,9 +2,10 @@
 
 ###### GitHub Actions
 
-Application is built and pushed to Docker Hub automatically by GitHub Actions. Trigger is any change in this folder (/todo-project/**)
+Application is built and pushed to Docker Hub and to Google Cloud Registry automatically by GitHub Actions. Trigger is
+any change in this folder (/todo-project/**)
 
-###### Encryption/decryption
+###### Encryption/decryption using PGP
 
 Copy PGP private key into container
 
@@ -20,6 +21,20 @@ sops --encrypt --in-place --encrypted-regex '^(data)$' --pgp 4AC71DA9F8AE00CFF2B
 # To decrypt
 gpg --import private.key
 GPG_TTY=`tty` sops --decrypt --in-place todo-project/manifests/postgres-secret.yaml
+```
+
+###### Encryption/decryption using Google Cloud KMS
+
+```shell
+gcloud auth login
+gcloud auth application-default login
+# To encrypt
+gcloud kms keyrings create sops --location global
+gcloud kms keys create sops-key --location global --keyring sops --purpose encryption
+gcloud kms keys list --location global --keyring sops
+sops --encrypt --in-place --encrypted-regex '^(data)$' --gcp-kms projects/devops-with-kubernetes-291121/locations/global/keyRings/sops/cryptoKeys/sops-key todo-project/manifests/postgres-secret.yaml
+# To decrypt
+sops --decrypt --in-place todo-project/manifests/postgres-secret.yaml
 ```
 
 ###### Manual
@@ -131,3 +146,16 @@ kubectl apply -f todo-project/manifests/
 
 Now you can open http://localhost:8081/grafana. Login with admin / prom-operator and play with logs and statistics from
 Prometheus.
+
+##### Part 3
+
+###### Exercise 3.03
+
+Decrypt todo-project/manifests/postgres-secret.yaml with PGP and encrypt it with Google Cloud KMS
+
+```shell
+kubectl apply -f common/manifests/namespace.yaml
+kubectl apply -f common/manifests/persistentvolumeclaim.yaml
+```
+
+Now the project is deployed by GitHub Actions to Google Cloud and can be opened at http://<EXTERNAL_IP>

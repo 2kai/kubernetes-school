@@ -15,8 +15,8 @@ export default class Database {
         return result.rows.map(row => row.todo);
     }
 
-    async addTodo(todo: string): Promise<void> {
-        if (todo.length > 140) {
+    async addTodo(todo: string, skipValidation: boolean = false): Promise<void> {
+        if (todo.length > 140 && !skipValidation) {
             console.error(todo + ' is toooooo long');
             console.error('Maximum length of TODO is 140 characters');
             return;
@@ -30,6 +30,6 @@ export default class Database {
         const response = await fetch('https://en.wikipedia.org/wiki/Special:Random', {redirect: 'manual'});
         const pageUrl = response.headers.get('location');
 
-        await this.addTodo('Please visit <a target="_blank" href="' + pageUrl + '">' + decodeURIComponent(pageUrl) + '</a> on ' + (new Date()).toDateString());
+        await this.addTodo('Please visit <a target="_blank" href="' + pageUrl + '">' + decodeURIComponent(pageUrl) + '</a> on ' + (new Date()).toDateString(), true);
     }
 }

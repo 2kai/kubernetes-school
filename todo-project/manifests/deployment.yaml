@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-project
-          image: 2kai/k8s-school-todo-project-frontend:2.09
+          image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-frontend
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -38,7 +38,7 @@ spec:
             claimName: common-claim
       containers:
         - name: todo-project
-          image: 2kai/k8s-school-todo-project-api:2.10
+          image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-api
           envFrom:
             - configMapRef:
                 name: todo-project-cm

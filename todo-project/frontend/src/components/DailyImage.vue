@@ -1,5 +1,5 @@
 <template>
-  <q-img src="http://localhost:8081/api/daily" alt="Daily image"/>
+  <q-img src="/api/daily" alt="Daily image"/>
 </template>
 
 <script lang="ts">

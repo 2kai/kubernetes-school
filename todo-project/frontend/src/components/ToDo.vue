@@ -22,7 +22,7 @@ import axios, {AxiosResponse} from 'axios';
 import {QInput} from 'quasar';
 
 export default class ToDo extends Vue {
-  readonly apiUrl = 'http://localhost:8081/api';
+  readonly apiUrl = '/api';
   public todoItem: string = '';
   public todoList: string[] = [];
 
