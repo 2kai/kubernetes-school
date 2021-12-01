@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Set output
         id: vars
-        run: echo "::set-output name=branch::$(echo -n "${GITHUB_REF#refs/*/}")"
+        run: echo "::set-output name=branch::$(echo -n "${GITHUB_REF#refs/*/}" | sed -e 's/[^a-zA-Z0-9-]/-/g' | tr '[:upper:]' '[:lower:]')"
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up Docker Buildx
@@ -79,9 +79,14 @@ jobs:
       - name: Deploy
         run: |
           cd todo-project
+          kubectl create namespace "${{ steps.vars.outputs.branch }}" || true
+          kubectl config set-context --current --namespace="${{ steps.vars.outputs.branch }}"
+          kustomize edit set namespace "${{ steps.vars.outputs.branch }}"
           kustomize edit set image gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-frontend=gcr.io/"$PROJECT_ID"/"$FRONTEND_IMAGE":"${{ steps.vars.outputs.branch }}"-$GITHUB_SHA
           kustomize edit set image gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-api=gcr.io/"$PROJECT_ID"/"$API_IMAGE":"${{ steps.vars.outputs.branch }}"-$GITHUB_SHA
           kustomize build . | kubectl apply -f -
-          kubectl -n project rollout status deployment todo-project-frontend-dep
-          kubectl -n project rollout status deployment todo-project-api-dep
-          kubectl -n project get services -o wide
+          kubectl rollout status deployment todo-project-frontend-dep
+          kubectl rollout status deployment todo-project-api-dep
+          kubectl get deploy -o wide
+          kubectl get services -o wide
+          kubectl get ing -o wide

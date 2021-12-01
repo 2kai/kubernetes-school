@@ -159,3 +159,8 @@ kubectl apply -f common/manifests/persistentvolumeclaim.yaml
 ```
 
 Now the project is deployed by GitHub Actions to Google Cloud and can be opened at http://<EXTERNAL_IP>
+
+###### Exercise 3.04
+
+Now every new branch of the project is deployed separately by GitHub Actions to Google Cloud and can be opened at
+different external IPs.
