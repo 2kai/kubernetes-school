@@ -1,5 +1,4 @@
 from fastapi import FastAPI, Depends
-from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
 from src import models
@@ -18,15 +17,12 @@ def get_db():
         db.close()
 
 
-app.add_route('/', lambda req: JSONResponse(), ['GET'])
-
-
-@app.get('/pingpong')
+@app.get('/')
 def index(db: Session = Depends(get_db)):
     return get_ping(db)
 
 
-@app.get('/pingpong/increase-and-get')
+@app.get('/increase-and-get')
 def increase_and_get(db: Session = Depends(get_db)):
     return get_ping(db, True)
 
