@@ -1,0 +1,30 @@
+name: Delete environment
+on:
+  delete:
+env:
+  PROJECT_ID: devops-with-kubernetes-291121
+  GKE_CLUSTER: dwk-cluster
+  GKE_ZONE: europe-north1-b
+jobs:
+  delete:
+    name: Delete environment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set output
+        id: vars
+        run: |
+          GITHUB_REF="${{ github.event.ref }}"
+          BRANCH_NAME="${GITHUB_REF#refs/*/}"
+          echo "::set-output name=branch_name::$(echo -n "$BRANCH_NAME" | sed -e 's/[^a-zA-Z0-9-]/-/g' | tr '[:upper:]' '[:lower:]')"
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+      - name: Init Cloud SDK
+        run: |
+          gcloud --quiet auth configure-docker
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+      - name: Delete environment
+        run: kubectl delete ns "${{ steps.vars.outputs.branch_name }}"

@@ -164,3 +164,7 @@ Now the project is deployed by GitHub Actions to Google Cloud and can be opened 
 
 Now every new branch of the project is deployed separately by GitHub Actions to Google Cloud and can be opened at
 different external IPs.
+
+###### Exercise 3.05
+
+Now when branch is deleted then its environment is also being deleted from Google Cloud.

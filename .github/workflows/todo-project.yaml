@@ -4,6 +4,7 @@ on:
     branches-ignore:
       - master
     paths:
+      - .github/workflows/todo-project.yaml
       - todo-project/**
 env:
   PROJECT_ID: devops-with-kubernetes-291121
