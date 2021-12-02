@@ -87,3 +87,9 @@ gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 
 As usual the choice between DBaaS and DIY is a matter of each particular case. And the correct choice depends on many
 factors besides aforementioned.
+
+###### Exercise 3.07
+
+I have both options (Cloud SQL and DIY PostgreSQL) at my current job. And my choice for this course is DIY PostgreSQL.
+It is more interesting to work and learn StatefulSet and PVC. It is more useful for learning k8s manifests. It is
+cheaper for such small projects. It doesn't require all cool stuff that Cloud SQL provides.
