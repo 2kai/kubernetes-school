@@ -93,3 +93,8 @@ factors besides aforementioned.
 I have both options (Cloud SQL and DIY PostgreSQL) at my current job. And my choice for this course is DIY PostgreSQL.
 It is more interesting to work and learn StatefulSet and PVC. It is more useful for learning k8s manifests. It is
 cheaper for such small projects. It doesn't require all cool stuff that Cloud SQL provides.
+
+###### Exercise 3.10
+
+Enabled Google Cloud Logging and Google Cloud Monitoring.
+![](./logs.png "Kubernetes Logs")
