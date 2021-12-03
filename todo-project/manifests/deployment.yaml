@@ -16,6 +16,13 @@ spec:
       containers:
         - name: todo-project
           image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-frontend
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "750Mi"
+            limits:
+              cpu: "500m"
+              memory: "1000Mi"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,3 +54,10 @@ spec:
           volumeMounts:
             - name: daily-image-volume
               mountPath: /opt/src/daily/
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "100Mi"
+            limits:
+              cpu: "300m"
+              memory: "100Mi"

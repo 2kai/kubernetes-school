@@ -168,3 +168,11 @@ different external IPs.
 ###### Exercise 3.05
 
 Now when branch is deleted then its environment is also being deleted from Google Cloud.
+
+###### Exercise 3.08
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Visually nothing was changed in this exercise. Added requests and limits for resources. 
