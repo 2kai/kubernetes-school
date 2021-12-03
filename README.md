@@ -52,8 +52,8 @@ gcloud container clusters create dwk-cluster --zone=europe-north1-b --release-ch
 gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 ```
 
-3.01, 3.02 - ping-pong  
-3.03, 3.04, 3.05 - todo-project
+3.01, 3.02, 3.09 - ping-pong  
+3.03, 3.04, 3.05, 3.08 - todo-project
 
 ###### Exercise 3.06
 

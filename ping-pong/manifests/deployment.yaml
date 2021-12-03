@@ -21,3 +21,10 @@ spec:
                 name: ping-pong-cm
             - secretRef:
                 name: ping-pong-postgres-secret
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+            limits:
+              cpu: "200m"
+              memory: "200Mi"

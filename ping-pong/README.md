@@ -72,3 +72,12 @@ kubectl apply -f log-output/manifests/log-output/
 
 Now the applications are deployed to Google Cloud, use ingresses and can be opened at http://<EXTERNAL_IP>/pingpong and
 http://<EXTERNAL_IP>/log-output
+
+###### Exercise 3.09
+
+```shell
+kubectl apply -f ping-pong/manifests/
+kubectl apply -f log-output/manifests/log-output/
+```
+
+Visually nothing was changed in this exercise. Added requests and limits for resources. 
