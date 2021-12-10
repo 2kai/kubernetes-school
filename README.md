@@ -55,6 +55,10 @@ gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 3.01, 3.02, 3.09 - ping-pong  
 3.03, 3.04, 3.05, 3.08 - todo-project
 
+##### Part 4
+
+4.01 - ping-pong
+
 ###### Exercise 3.06
 
 **DBaaS vs DIY**

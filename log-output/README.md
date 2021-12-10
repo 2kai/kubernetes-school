@@ -15,7 +15,7 @@ docker push 2kai/k8s-school-log-output-writer
 docker push 2kai/k8s-school-log-output-reader
 docker run -p 80:8090 2kai/k8s-school-log-output-1-07
 docker run 2kai/k8s-school-log-output-writer
-docker run -p 81:8090 2kai/k8s-school-log-output-reader
+docker run -p 81:8091 2kai/k8s-school-log-output-reader
 ```
 
 ##### Part 1

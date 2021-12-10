@@ -5,7 +5,11 @@ from sqlalchemy.orm import Session
 from src import models
 from src.database import engine, SessionLocal
 
-models.Base.metadata.create_all(bind=engine)
+try:
+    models.Base.metadata.create_all(bind=engine)
+except Exception:
+    # Leave it for k8s
+    pass
 
 app = FastAPI()
 
@@ -19,6 +23,12 @@ def get_db():
 
 
 app.add_route('/', lambda req: JSONResponse(), ['GET'])
+
+
+@app.get('/healthz')
+def healthz(db: Session = Depends(get_db)):
+    db.get_bind().connect()
+    return JSONResponse()
 
 
 @app.get('/pingpong')

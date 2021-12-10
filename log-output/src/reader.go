@@ -31,6 +31,13 @@ func main() {
         log.Fatal("Error loading .env file")
     }
 
+    http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+        _, err := http.Get("http://ping-pong-svc/pingpong")
+
+        if err != nil {
+            w.WriteHeader(http.StatusInternalServerError)
+        }
+    })
     http.HandleFunc("/", kiittiHandler(utils.GenerateRandomHash()))
     http.ListenAndServe(":8091", nil)
 }

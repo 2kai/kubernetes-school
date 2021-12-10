@@ -80,4 +80,13 @@ kubectl apply -f ping-pong/manifests/
 kubectl apply -f log-output/manifests/log-output/
 ```
 
-Visually nothing was changed in this exercise. Added requests and limits for resources. 
+Visually nothing was changed in this exercise. Added requests and limits for resources.
+
+###### Exercise 4.01
+
+```shell
+kubectl apply -f ping-pong/manifests/
+kubectl apply -f log-output/manifests/log-output/
+```
+
+Visually nothing was changed in this exercise. Added readinessProbe.
