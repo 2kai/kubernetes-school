@@ -18,6 +18,14 @@ app.get('/', (req, res) => {
     res.send();
 });
 
+app.get('/healthz', (req, res) => {
+    if (!database.isConnected()) {
+        res.status(500).send();
+    }
+
+    res.send();
+});
+
 app.get('/api/todos', async function (req, res) {
     res.json(await database.getTodos());
 });

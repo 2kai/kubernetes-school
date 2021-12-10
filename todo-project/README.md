@@ -175,4 +175,12 @@ Now when branch is deleted then its environment is also being deleted from Googl
 kubectl apply -f todo-project/manifests/
 ```
 
-Visually nothing was changed in this exercise. Added requests and limits for resources. 
+Visually nothing was changed in this exercise. Added requests and limits for resources.
+
+###### Exercise 4.02
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Visually nothing was changed in this exercise. Added readinessProbe.

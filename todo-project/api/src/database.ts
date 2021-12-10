@@ -10,6 +10,17 @@ const pool = new Pool({
 });
 
 export default class Database {
+    isConnected(): boolean {
+        return pool.connect((err, client, release) => {
+            if (err) {
+                return false;
+            }
+            release();
+
+            return true;
+        })
+    }
+
     async getTodos(): Promise<object[]> {
         const result = await pool.query('SELECT * FROM todos');
         return result.rows.map(row => row.todo);

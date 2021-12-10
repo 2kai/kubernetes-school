@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: todo-project
-          image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-frontend
+          image: 2kai/k8s-school-todo-project-frontend:4.02
           resources:
             requests:
               cpu: "150m"
@@ -45,7 +45,7 @@ spec:
             claimName: common-claim
       containers:
         - name: todo-project
-          image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-api
+          image: 2kai/k8s-school-todo-project-api:4.02
           envFrom:
             - configMapRef:
                 name: todo-project-cm
@@ -61,3 +61,9 @@ spec:
             limits:
               cpu: "300m"
               memory: "100Mi"
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            httpGet:
+              path: /healthz
+              port: 3000
