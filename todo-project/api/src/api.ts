@@ -18,24 +18,25 @@ app.get('/', (req, res) => {
     res.send();
 });
 
-app.get('/healthz', (req, res) => {
-    if (!database.isConnected()) {
+app.get('/healthz', async function (req, res) {
+    try {
+        await database.getTodos();
+        res.send();
+    } catch (error) {
         res.status(500).send();
     }
-
-    res.send();
 });
 
-app.get('/api/todos', async function (req, res) {
+app.get('/todos', async function (req, res) {
     res.json(await database.getTodos());
 });
 
-app.post('/api/todos', async function (req, res) {
+app.post('/todos', async function (req, res) {
     await database.addTodo(req.body.todo);
     res.json(await database.getTodos());
 });
 
-app.get('/api/daily', async function (req, res) {
+app.get('/daily', async function (req, res) {
     let isFreshFileMissing = false;
 
     try {

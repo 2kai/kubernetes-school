@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
             - name: daily-todo
-              image: gcr.io/devops-with-kubernetes-291121/k8s-school-todo-project-api
+              image: 2kai/k8s-school-todo-project-api:4.04
               envFrom:
                 - configMapRef:
                     name: todo-project-cm

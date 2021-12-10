@@ -4,7 +4,7 @@ metadata:
   name: todo-project-frontend-svc
   namespace: project
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: todo-project-frontend
   ports:
@@ -18,7 +18,7 @@ metadata:
   name: todo-project-api-svc
   namespace: project
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: todo-project-api
   ports:

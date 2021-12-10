@@ -184,3 +184,11 @@ kubectl apply -f todo-project/manifests/
 ```
 
 Visually nothing was changed in this exercise. Added readinessProbe.
+
+###### Exercise 4.04
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Visually nothing was changed in this exercise. Added AnalysisTemplate.

@@ -33,7 +33,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data
-              subPath: postgres
           envFrom:
             - secretRef:
                 name: todo-project-postgres-secret
