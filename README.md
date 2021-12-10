@@ -2,7 +2,7 @@
 
 ```shell
 docker build -t kubernetes-school .
-docker run --rm -it -p 8001:3005 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.config:/root/.config/gcloud -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
+docker run --rm -it -p 8001:3005 -p 9090:9090 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.config:/root/.config/gcloud -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
 ```
 
 Then inside Docker container
@@ -55,11 +55,6 @@ gcloud container clusters delete dwk-cluster --zone=europe-north1-b
 3.01, 3.02, 3.09 - ping-pong  
 3.03, 3.04, 3.05, 3.08 - todo-project
 
-##### Part 4
-
-4.01 - ping-pong  
-4.02 - todo-project
-
 ###### Exercise 3.06
 
 **DBaaS vs DIY**
@@ -103,3 +98,16 @@ cheaper for such small projects. It doesn't require all cool stuff that Cloud SQ
 
 Enabled Google Cloud Logging and Google Cloud Monitoring.
 ![](./logs.png "Kubernetes Logs")
+
+##### Part 4
+
+4.01 - ping-pong  
+4.02 - todo-project
+
+###### Exercise 4.03
+
+```shell
+kubectl -n prometheus port-forward prometheus-kube-prometheus-stack-1639-prometheus-0 9090:9090 --address=0.0.0.0
+```
+
+Query for Prometheus: `scalar(count(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}))`
