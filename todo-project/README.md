@@ -192,3 +192,11 @@ kubectl apply -f todo-project/manifests/
 ```
 
 Visually nothing was changed in this exercise. Added AnalysisTemplate.
+
+###### Exercise 4.05
+
+```shell
+kubectl apply -f todo-project/manifests/
+```
+
+Now you can change status of todo - not done/done.

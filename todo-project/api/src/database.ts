@@ -11,8 +11,8 @@ const pool = new Pool({
 
 export default class Database {
     async getTodos(): Promise<object[]> {
-        const result = await pool.query('SELECT * FROM todos');
-        return result.rows.map(row => row.todo);
+        const result = await pool.query('SELECT * FROM todos ORDER BY id');
+        return result.rows;
     }
 
     async addTodo(todo: string, skipValidation: boolean = false): Promise<void> {
@@ -24,6 +24,11 @@ export default class Database {
 
         console.log('Added todo "' + todo + '"');
         await pool.query('INSERT INTO todos (todo) VALUES ($1)', [todo]);
+    }
+
+    async updateTodoStatus(id: bigint, is_done: boolean): Promise<void> {
+        console.log('Updated todo #' + id + ', new status is: ' + is_done);
+        await pool.query('UPDATE todos SET is_done = $1 WHERE id = $2', [is_done, id]);
     }
 
     async addDailyTodo() {

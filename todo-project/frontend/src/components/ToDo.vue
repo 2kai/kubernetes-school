@@ -10,8 +10,12 @@
     <q-btn label="Create TODO" type="submit" color="primary"/>
   </q-form>
   <ul>
-    <li v-for="(todoItem, index) in todoList" :key="index">
-      <span v-html="todoItem"></span>
+    <li v-for="(todoListItem) in todoList" :key="todoListItem.id">
+      <q-checkbox
+          v-model="todoListItem.is_done"
+          @update:model-value="this.updateItemStatus(todoListItem)"
+      />
+      <span v-html="todoListItem.todo"></span>
     </li>
   </ul>
 </template>
@@ -24,7 +28,7 @@ import {QInput} from 'quasar';
 export default class ToDo extends Vue {
   readonly apiUrl = '/api';
   public todoItem: string = '';
-  public todoList: string[] = [];
+  public todoList: object[] = [];
 
   $refs!: {
     todoInput: QInput
@@ -43,6 +47,10 @@ export default class ToDo extends Vue {
       this.$refs.todoInput.resetValidation();
       this.$refs.todoInput.focus();
     });
+  }
+
+  updateItemStatus(todoItem: any) {
+    axios.put(this.apiUrl + '/todos/' + todoItem.id, todoItem).then((response: AxiosResponse) => this.todoList = response.data);
   }
 }
 </script>

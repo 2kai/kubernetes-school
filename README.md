@@ -106,7 +106,7 @@ Enabled Google Cloud Logging and Google Cloud Monitoring.
 ##### Part 4
 
 4.01 - ping-pong  
-4.02, 4.04 - todo-project
+4.02, 4.04, 4.05 - todo-project
 
 ###### Exercise 4.03
 

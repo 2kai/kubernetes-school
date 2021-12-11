@@ -36,6 +36,11 @@ app.post('/todos', async function (req, res) {
     res.json(await database.getTodos());
 });
 
+app.put('/todos/:id', async function (req, res) {
+    await database.updateTodoStatus(req.params.id, req.body.is_done);
+    res.json(await database.getTodos());
+});
+
 app.get('/daily', async function (req, res) {
     let isFreshFileMissing = false;
 
