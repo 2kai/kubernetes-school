@@ -9,6 +9,7 @@ on:
 env:
   FRONTEND_IMAGE: k8s-school-todo-project-frontend
   API_IMAGE: k8s-school-todo-project-api
+  BROADCASTER_IMAGE: k8s-school-todo-project-broadcaster
 jobs:
   build-and-push:
     name: Build and push application
@@ -50,6 +51,16 @@ jobs:
           tags: |
             2kai/${{ env.API_IMAGE }}:${{ steps.vars.outputs.branch }}
             2kai/${{ env.API_IMAGE }}:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+      - name: Build and push broadcaster
+        uses: docker/build-push-action@v2
+        with:
+          context: todo-project/broadcaster
+          push: true
+          tags: |
+            2kai/${{ env.BROADCASTER_IMAGE }}:${{ steps.vars.outputs.branch }}
+            2kai/${{ env.BROADCASTER_IMAGE }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       - name: Move cache

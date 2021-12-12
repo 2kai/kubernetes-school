@@ -13,22 +13,6 @@ k3d cluster create --port 8082:30080@agent:0 --port 8081:80@loadbalancer -a 2 --
 docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube
 sed -i 's/https:\/\/0.0.0.0/https:\/\/'"$HOST_IP"'/' /root/.kube/config
 kubectl cluster-info
-
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add stable https://charts.helm.sh/stable
-kubectl create namespace prometheus
-helm install prometheus-community/kube-prometheus-stack --generate-name --namespace prometheus \
-  --set grafana.ingress.enabled=true \
-  --set grafana.ingress.path=/grafana \
-  --set grafana.'grafana\.ini'.server.root_url=http://0.0.0.0:3000/grafana \
-  --set grafana.'grafana\.ini'.server.serve_from_sub_path=true
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-kubectl create namespace loki-stack
-helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
-
-kubectl create namespace argo-rollouts
-kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/install.yaml
 k9s
 ```
 
@@ -106,7 +90,7 @@ Enabled Google Cloud Logging and Google Cloud Monitoring.
 ##### Part 4
 
 4.01 - ping-pong  
-4.02, 4.04, 4.05 - todo-project
+4.02, 4.04, 4.05, 4.06 - todo-project
 
 ###### Exercise 4.03
 

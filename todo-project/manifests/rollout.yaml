@@ -52,7 +52,10 @@ spec:
             claimName: common-claim
       containers:
         - name: todo-project
-          image: 2kai/k8s-school-todo-project-api:4.05
+          image: 2kai/k8s-school-todo-project-api:4.06
+          env:
+            - name: NATS_URL
+              value: nats://todo-nats:4222
           envFrom:
             - configMapRef:
                 name: todo-project-cm
@@ -74,3 +77,35 @@ spec:
             httpGet:
               path: /healthz
               port: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-project-broadcaster-dep
+  namespace: project
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: todo-project-broadcaster
+  template:
+    metadata:
+      labels:
+        app: todo-project-broadcaster
+    spec:
+      containers:
+        - name: broadcaster
+          image: 2kai/k8s-school-todo-project-broadcaster:4.06
+          env:
+            - name: NATS_URL
+              value: nats://todo-nats:4222
+          envFrom:
+            - secretRef:
+                name: todo-project-telegram-secret
+          resources:
+            requests:
+              cpu: "150m"
+              memory: "100Mi"
+            limits:
+              cpu: "300m"
+              memory: "100Mi"

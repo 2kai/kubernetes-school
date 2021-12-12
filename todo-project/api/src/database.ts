@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import Nats from './nats';
 
 const Pool = require('pg').Pool;
 const pool = new Pool({
@@ -8,6 +9,8 @@ const pool = new Pool({
     password: process.env.POSTGRES_PASSWORD,
     port: 5432,
 });
+
+const nats = new Nats();
 
 export default class Database {
     async getTodos(): Promise<object[]> {
@@ -23,11 +26,13 @@ export default class Database {
         }
 
         console.log('Added todo "' + todo + '"');
+        await nats.sendMessage('Added todo "' + todo + '"');
         await pool.query('INSERT INTO todos (todo) VALUES ($1)', [todo]);
     }
 
     async updateTodoStatus(id: bigint, is_done: boolean): Promise<void> {
         console.log('Updated todo #' + id + ', new status is: ' + is_done);
+        await nats.sendMessage('Updated todo #' + id + ', new status is: ' + is_done);
         await pool.query('UPDATE todos SET is_done = $1 WHERE id = $2', [is_done, id]);
     }
 

@@ -43,9 +43,14 @@ sops --decrypt --in-place todo-project/manifests/postgres-secret.yaml
 docker build -t 2kai/k8s-school-todo-project-api api
 docker push 2kai/k8s-school-todo-project-api:latest
 docker run -p 8080:3000 2kai/k8s-school-todo-project-api
+
 docker build -t 2kai/k8s-school-todo-project-frontend frontend
 docker push 2kai/k8s-school-todo-project-frontend:latest
 docker run -p 80:8080 2kai/k8s-school-todo-project-frontend
+
+docker build -t 2kai/k8s-school-todo-project-broadcaster broadcaster
+docker push 2kai/k8s-school-todo-project-broadcaster:latest
+docker run 2kai/k8s-school-todo-project-broadcaster
 ```
 
 ##### Part 1
@@ -141,6 +146,18 @@ Now todo with a link to Wikipedia will be added once a day automatically.
 ###### Exercise 2.10
 
 ```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add stable https://charts.helm.sh/stable
+kubectl create namespace prometheus
+helm install prometheus-community/kube-prometheus-stack --generate-name --namespace prometheus \
+  --set grafana.ingress.enabled=true \
+  --set grafana.ingress.path=/grafana \
+  --set grafana.'grafana\.ini'.server.root_url=http://0.0.0.0:3000/grafana \
+  --set grafana.'grafana\.ini'.server.serve_from_sub_path=true
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+kubectl create namespace loki-stack
+helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
 kubectl apply -f todo-project/manifests/
 ```
 
@@ -188,6 +205,8 @@ Visually nothing was changed in this exercise. Added readinessProbe.
 ###### Exercise 4.04
 
 ```shell
+kubectl create namespace argo-rollouts
+kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/install.yaml
 kubectl apply -f todo-project/manifests/
 ```
 
@@ -200,3 +219,14 @@ kubectl apply -f todo-project/manifests/
 ```
 
 Now you can change status of todo - not done/done.
+
+###### Exercise 4.06
+
+```shell
+helm repo add nats https://nats-io.github.io/k8s/helm/charts/
+helm repo update
+helm install --namespace project todo-nats nats/nats
+kubectl apply -f todo-project/manifests/
+```
+
+Now a message to Telegram is being sent when todo is added or changed status.
