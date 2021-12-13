@@ -1,22 +1,22 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - configmap.yaml
-  - cronjob.yaml
-  - ingress.yaml
-  - persistentvolumeclaim.yaml
-  - postgres.yaml
-  - postgres-secret.yaml
-  - rollout.yaml
-  - service.yaml
-  - telegram-secret.yaml
+- configmap.yaml
+- cronjob.yaml
+- ingress.yaml
+- persistentvolumeclaim.yaml
+- postgres.yaml
+- postgres-secret.yaml
+- rollout.yaml
+- service.yaml
+- telegram-secret.yaml
 images:
-  - name: 2kai/k8s-school-todo-project-api
-    newName: 2kai/k8s-school-todo-project-api
-    newTag: latest
-  - name: 2kai/k8s-school-todo-project-frontend
-    newName: 2kai/k8s-school-todo-project-frontend
-    newTag: latest
-  - name: 2kai/k8s-school-todo-project-broadcaster
-    newName: 2kai/k8s-school-todo-project-broadcaster
-    newTag: latest
+- name: 2kai/k8s-school-todo-project-api
+  newName: 2kai/k8s-school-todo-project-api
+  newTag: d2a61b2a846c391566ff566df817669d461da5ae
+- name: 2kai/k8s-school-todo-project-broadcaster
+  newName: 2kai/k8s-school-todo-project-broadcaster
+  newTag: d2a61b2a846c391566ff566df817669d461da5ae
+- name: 2kai/k8s-school-todo-project-frontend
+  newName: 2kai/k8s-school-todo-project-frontend
+  newTag: d2a61b2a846c391566ff566df817669d461da5ae
