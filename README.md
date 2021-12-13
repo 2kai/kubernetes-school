@@ -99,3 +99,13 @@ kubectl -n prometheus port-forward prometheus-kube-prometheus-stack-1639-prometh
 ```
 
 Query for Prometheus: `scalar(count(kube_pod_info{namespace="prometheus", created_by_kind="StatefulSet"}))`
+
+###### Exercise 4.07
+
+```shell
+flux bootstrap github \
+    --owner=2kai \
+    --repository=kubernetes-school-cluster
+```
+
+Now cluster is managed by Flux and https://github.com/2kai/kubernetes-school-cluster repository.

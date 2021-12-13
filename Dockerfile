@@ -55,3 +55,6 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 # Kustomize
 RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash \
     && mv /opt/kustomize /usr/local/bin
+
+# Flux
+RUN curl -s https://fluxcd.io/install.sh | bash
