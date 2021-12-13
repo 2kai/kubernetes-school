@@ -112,10 +112,24 @@ Now cluster is managed by Flux and https://github.com/2kai/kubernetes-school-clu
 
 ###### Exercise 4.08
 
+Final script to recreate cluster from scratch
+
 ```shell
+HOST_IP=`ip -4 route show default | cut -d" " -f3`
+k3d cluster create --port 8082:30080@agent:0 --port 8081:80@loadbalancer -a 2 --k3s-arg "--tls-san="$HOST_IP"@server:0"
+docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube
+sed -i 's/https:\/\/0.0.0.0/https:\/\/'"$HOST_IP"'/' /root/.kube/config
+kubectl create namespace argo-rollouts
+kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/install.yaml
 # Create JSON key for Service account
+kubectl create namespace flux-system
 kubectl -n flux-system create secret generic google-applications-credentials --from-file=keyfile.json --type=Opaque
+flux bootstrap github \
+    --owner=2kai \
+    --repository=kubernetes-school-cluster
 kubectl annotate serviceaccount kustomize-controller \
   --namespace flux-system \
   iam.gke.io/gcp-service-account=github-actions@devops-with-kubernetes-291121.iam.gserviceaccount.com
+kubectl -n project cp todo-project/api/structure.sql todo-project-postgres-ss-0:/structure.sql
+kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgres < /structure.sql'
 ```
