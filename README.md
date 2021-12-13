@@ -113,6 +113,8 @@ Now cluster is managed by Flux and https://github.com/2kai/kubernetes-school-clu
 ###### Exercise 4.08
 
 ```shell
+# Create JSON key for Service account
+kubectl -n flux-system create secret generic google-applications-credentials --from-file=keyfile.json --type=Opaque
 kubectl annotate serviceaccount kustomize-controller \
   --namespace flux-system \
   iam.gke.io/gcp-service-account=github-actions@devops-with-kubernetes-291121.iam.gserviceaccount.com
