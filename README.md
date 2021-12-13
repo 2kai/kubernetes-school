@@ -109,3 +109,11 @@ flux bootstrap github \
 ```
 
 Now cluster is managed by Flux and https://github.com/2kai/kubernetes-school-cluster repository.
+
+###### Exercise 4.08
+
+```shell
+kubectl annotate serviceaccount kustomize-controller \
+  --namespace flux-system \
+  iam.gke.io/gcp-service-account=github-actions@devops-with-kubernetes-291121.iam.gserviceaccount.com
+```
