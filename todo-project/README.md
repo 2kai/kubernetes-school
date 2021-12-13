@@ -205,6 +205,7 @@ Visually nothing was changed in this exercise. Added readinessProbe.
 ###### Exercise 4.04
 
 ```shell
+kubectl create namespace argo-rollouts
 kubectl apply -n argo-rollouts -f https://raw.githubusercontent.com/argoproj/argo-rollouts/master/manifests/install.yaml
 kubectl apply -f todo-project/manifests/
 ```

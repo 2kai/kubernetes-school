@@ -11,10 +11,3 @@ metadata:
   name: project
   labels:
     name: project
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: argo-rollouts
-  labels:
-    name: argo-rollouts
