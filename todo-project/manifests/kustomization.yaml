@@ -13,10 +13,10 @@ resources:
 images:
 - name: 2kai/k8s-school-todo-project-api
   newName: 2kai/k8s-school-todo-project-api
-  newTag: 686c0386c4b327327f31f6ae3e10b47d51004984
+  newTag: 7102dfdf7d399987e7a76b9d875c4d0fda060686
 - name: 2kai/k8s-school-todo-project-broadcaster
   newName: 2kai/k8s-school-todo-project-broadcaster
-  newTag: 686c0386c4b327327f31f6ae3e10b47d51004984
+  newTag: 7102dfdf7d399987e7a76b9d875c4d0fda060686
 - name: 2kai/k8s-school-todo-project-frontend
   newName: 2kai/k8s-school-todo-project-frontend
-  newTag: 686c0386c4b327327f31f6ae3e10b47d51004984
+  newTag: 7102dfdf7d399987e7a76b9d875c4d0fda060686
