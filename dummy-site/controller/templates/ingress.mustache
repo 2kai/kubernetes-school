@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ dummy_site_name }}-ing
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /dummy/{{ dummy_site_name }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ dummy_site_name }}-svc
+                port:
+                  number: 80

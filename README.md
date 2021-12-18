@@ -133,3 +133,7 @@ kubectl annotate serviceaccount kustomize-controller \
 kubectl -n project cp todo-project/api/structure.sql todo-project-postgres-ss-0:/structure.sql
 kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgres < /structure.sql'
 ```
+
+##### Part 5
+
+5.01 - dummy-site  

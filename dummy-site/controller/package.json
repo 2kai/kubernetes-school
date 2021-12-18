@@ -1,0 +1,18 @@
+{
+  "name": "dummy-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sasha Klepikov <kai@list.ru>",
+  "license": "ISC",
+  "dependencies": {
+    "@kubernetes/client-node": "^0.16.1",
+    "json-stream": "^1.0.0",
+    "mustache": "^4.2.0",
+    "request": "^2.88.2"
+  }
+}

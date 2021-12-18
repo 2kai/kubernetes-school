@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ dummy_site_name }}-job
+  labels:
+    dummy_site: {{ dummy_site_name }}
+spec:
+  template:
+    spec:
+      volumes:
+        - name: {{ dummy_site_name }}-volume
+          persistentVolumeClaim:
+            claimName: {{ dummy_site_name }}-claim
+      containers:
+      - name: {{ dummy_site_name }}
+        image: {{{ image }}}
+        imagePullPolicy: Always
+        args: [ "{{{ website_url }}}" ]
+        volumeMounts:
+          - name: {{ dummy_site_name }}-volume
+            mountPath: /usr/src/app/
+      restartPolicy: Never
