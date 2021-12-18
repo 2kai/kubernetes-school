@@ -194,6 +194,8 @@ kubectl apply -f todo-project/manifests/
 
 Visually nothing was changed in this exercise. Added requests and limits for resources.
 
+##### Part 4
+
 ###### Exercise 4.02
 
 ```shell
@@ -230,3 +232,14 @@ kubectl apply -f todo-project/manifests/
 ```
 
 Now a message to Telegram is being sent when todo is added or changed status.
+
+##### Part 5
+
+###### Exercise 5.02
+
+```shell
+linkerd install | kubectl apply -f -
+kubectl apply -f todo-project/manifests/
+```
+
+Visually nothing was changed in this exercise. Project has been moved to Linkerd.

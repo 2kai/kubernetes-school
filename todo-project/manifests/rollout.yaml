@@ -10,6 +10,8 @@ spec:
       app: todo-project-frontend
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: todo-project-frontend
     spec:
@@ -43,6 +45,8 @@ spec:
         - setWeight: 50
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: todo-project-api
     spec:
@@ -90,6 +94,8 @@ spec:
       app: todo-project-broadcaster
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: todo-project-broadcaster
     spec:

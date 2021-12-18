@@ -58,3 +58,8 @@ RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/
 
 # Flux
 RUN curl -s https://fluxcd.io/install.sh | bash
+
+# Linkerd
+RUN curl -fsL https://run.linkerd.io/install | sh
+
+ENV PATH="/root/.linkerd2/bin:${PATH}"

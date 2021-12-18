@@ -137,3 +137,4 @@ kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgre
 ##### Part 5
 
 5.01 - dummy-site  
+5.02 - todo-project
