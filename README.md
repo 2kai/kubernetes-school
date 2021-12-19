@@ -144,3 +144,17 @@ kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgre
 Learned how to run Automated Canary Releases using Linkerd and Flagger.  
 Script command output is [here](./5.03.txt)
 
+###### Exercise 5.04
+
+**Rancher vs Anthos vs OpenShift**
+
+I choose Anthos.
+
+* It allows to manage all my infrastructure including Google Cloud resources and on-prem resources (yes, I have two
+  servers inside).
+* I don't want to deal with RedHat ecosystem because right now almost everything in my company is in Google ecosystem.
+* Google Cloud Marketplace provides a lot of production-ready solutions that are suitable for me.
+* Anthos has "Migrate for Anthos and GKE" tool to move smoothly.
+
+Actually this is very hard exercise. Good choice always depends on requirements and how chosen tool fit to them. So in
+real life I'd start with description of what infrastructure we have and what we want to do with it and how to manage it.
