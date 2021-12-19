@@ -158,3 +158,52 @@ I choose Anthos.
 
 Actually this is very hard exercise. Good choice always depends on requirements and how chosen tool fit to them. So in
 real life I'd start with description of what infrastructure we have and what we want to do with it and how to manage it.
+
+###### Exercise 5.06
+
+NB! I mentioned just three products (marked two on the picture, this is a mistake) as indirect usage because either I
+know what I'm using (and what is this product dependent on) or I don't know this at all because "indirect usage" is
+located under the hood very deeply and at the moment I'm not really interested how it works in background.
+
+* What I used during the course
+    * Kubernetes - as base system for this course
+    * k3s - as lightweight Kubernetes distribution
+    * PostgreSQL - as a database for applications
+    * Nats - as a messenger in Part 4
+    * Argo - as Kubernetes controller to try Canary releases in Part 4
+    * Flux - as a tool to try GitOps approach in CI/CD management
+    * Helm - as a package manager for Kubernetes used in Part 2-4
+    * GKE - as a platform to host and manage Kubernetes cluster
+    * Google Cloud - as a platform to manage Google Cloud resources
+    * Prometheus - as monitoring system in Part 2-4
+    * Grafana - as analytics visualizer in Part 2-4
+    * GitHub Actions - as build and CI/CD process
+    * Linkerd - as service mesh in Part 5
+    * Google Persistent Disk - as a persisent storage in Part 3
+    * Google Container Registry - as a container registry in Part 3
+* What I used indirectly
+    * Gradle - to build Java application I think
+    * Istio - as service mesh
+    * Werf - as part of CI/CD process
+* What I used outside the course
+    * MariaDB - as database
+    * MongoDB - as database
+    * MySQL - as database
+    * Percona - as database
+    * Redis - as queue
+    * RabbitMQ - as messenger
+    * TeamCity - to build application and deploy it to production environment
+    * GitLab - for CI/CD process
+    * Jenkins - for CI/CD process
+    * AWS - as platform for hosted Kubernetes
+    * Heroku - as platform for hosting application
+    * Google Stackdriver - as log collector. I think this is already deprecated.
+    * New Relic - for error collecting and APM
+    * Sentry - for error collecting and APM
+    * Datadog - as data collector and visualizer
+    * Logstash - as log collector
+    * Nginx - as proxy server
+    * Terraform - to manage Google Cloud infrastructure
+    * Whitesource - to manage dependencies in GitHub
+
+![](./landscape.png "Nice picture of products and services")
