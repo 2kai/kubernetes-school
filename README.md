@@ -2,7 +2,7 @@
 
 ```shell
 docker build -t kubernetes-school .
-docker run --rm -it -p 8001:3005 -p 9090:9090 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.config:/root/.config/gcloud -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
+docker run --rm -it -p 8001:3005 -p 9090:9090 -p 8080:8080 -v /var/run/docker.sock:/var/run/docker.sock -v "$PWD":/opt -v "$PWD"/.config/.config:/root/.config/gcloud -v "$PWD"/.config/.kube:/root/.kube kubernetes-school bash
 ```
 
 Then inside Docker container
@@ -138,3 +138,9 @@ kubectl -n project exec -it todo-project-postgres-ss-0 -- sh -c 'psql -U postgre
 
 5.01 - dummy-site  
 5.02 - todo-project
+
+###### Exercise 5.03
+
+Learned how to run Automated Canary Releases using Linkerd and Flagger.  
+Script command output is [here](./5.03.txt)
+
