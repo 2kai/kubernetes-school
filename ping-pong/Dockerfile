@@ -13,4 +13,4 @@ RUN apk add --no-cache --virtual .build-deps cargo make g++ postgresql-dev \
 
 COPY . .
 
-CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8088"]
+CMD uvicorn src.app:app --host 0.0.0.0 --port "$PORT"

@@ -1,0 +1,13 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ping-pong-serverless
+spec:
+  template:
+    metadata:
+      name: ping-pong-serverless-v1
+    spec:
+      containers:
+        - image: 2kai/k8s-school-ping-pong:5.05
+          ports:
+            - containerPort: 8087
