@@ -1,4 +1,4 @@
-FROM golang:1.17.3-alpine3.14 as base
+FROM golang:1.17.7-alpine3.14 as base
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
