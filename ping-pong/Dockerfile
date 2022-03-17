@@ -1,4 +1,4 @@
-FROM python:3.10.0-alpine3.14
+FROM python:3.10.3-alpine3.14
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
