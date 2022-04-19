@@ -1,4 +1,4 @@
-FROM php:8.0.13-alpine3.14
+FROM php:8.1.5-alpine3.14
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
