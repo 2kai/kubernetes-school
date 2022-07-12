@@ -1,4 +1,4 @@
-FROM debian:11.1-slim
+FROM debian:11.4-slim
 
 MAINTAINER "Sasha Klepikov <kai@list.ru>"
 
