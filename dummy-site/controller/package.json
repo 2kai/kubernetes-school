@@ -10,7 +10,7 @@
   "author": "Sasha Klepikov <kai@list.ru>",
   "license": "ISC",
   "dependencies": {
-    "@kubernetes/client-node": "^0.16.1",
+    "@kubernetes/client-node": "^0.18.1",
     "json-stream": "^1.0.0",
     "mustache": "^4.2.0",
     "request": "^2.88.2"
